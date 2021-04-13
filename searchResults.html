@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if (classNum == '') and (topic == '') and (section == '0') %}
+<h2>Matching Results for {{semester}}: {{department}}:</h2>
+
+{% elif (topic == '') and (section == '0')%}
+<h2>Matching Results for {{semester}}: {{department}} {{classNum}} : </h2>
+
+{% elif (classNum == '') and (topic == '') %}
+<h2>Matching Results for {{semester}}: {{department}} Section {{section}} : </h2>
+
+{% elif (classNum == '') and  (section == '0') %}
+<h2>Matching Results for {{semester}}: {{department}} -> {{topic}}:</h2>
+
+{% elif classNum == '' %}
+<h2>Matching Results for {{semester}}: {{department}} Section {{section}} -> {{topic}}:</h2>
+
+{% elif section == '0' %}
+<h2>Matching Results for {{semester}}: {{department}} {{classNum}} -> {{topic}}:</h2>
+
+{% elif topic == '' %}
+<h2>Matching Results for {{semester}}: {{department}} {{classNum}} - {{section}}:</h2>
+{% endif %}
+
+
+<table>
+    <tr>
+        <th>Class</th>
+        <th>Week</th> 
+        <th>File</th>
+        <th>Topic</th>
+        <th>Kind</th>
+    </tr>
+   
+{% for result in matches %}
+    <tr>
+        <td>{{result.department}} {{result.classNumber}}</td>
+        <td>{{result.week}}</td>
+        <td><a href="{{ url_for('get_file',mID= result.mID ) }}">{{result.fileName}}</a></td>
+        <td>{{result.topic}}</td>
+        <td>{{result.kind}}</td>
+    </tr>
+{% endfor %}
+    
+</table>
+
+{% endblock %}
