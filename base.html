@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name=author content="Anushri, Arushi and Veeksha">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SI Repository</title>
+    <link rel='stylesheet' href="{{url_for('static', filename = 'style.css')}}">
+    <link rel="shortcut icon" type="image/jpg" href="{{url_for('static', filename = 'Wellesley_Logo_Favicon.jpg')}}">
+</head>
+
+<body>
+
+<h1 id="logo">Tutor Materials Repository</h1>
+          
+{% block nav %}
+<nav>
+  <ul>
+    <li><a href="{{url_for('index')}}">Home</a></li>
+    <li><a href="{{url_for('search')}}">Search</a></li>
+    <li><a href="{{url_for('upload')}}">Upload</a></li>
+    <li><a href="{{url_for('uploaded_files')}}">Uploaded Files</a></li>
+    <li><a href="{{url_for('check')}}">Check SIs</a></li>
+    <li><a href="{{url_for('insertSI')}}">Insert SI</a></li>
+  </ul>
+</nav>
+<br>
+{% endblock %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div id="messages">
+  {% for msg in messages %}
+  <p>{{msg}}</p>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+
+{% block content %} {% endblock %}
+  
+</body>
+</html>
