@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Check which SI leaders have uploaded files for a given week:</h2>
+<form class="check" method="GET" action="{{url_for('checkResults')}}">
+    <p>
+    <label>Semester:
+        <select required name="semesterSI" autocomplete="off">
+            <option value="">choose one</option>
+            {% for entry in semesters: %}
+                  <option value='{{entry.semester}}'>{{entry.semester}}</option>
+            {% endfor %}
+            <!-- will have to change the default semester manually every semester -->
+            <option value="Spring-2021" selected > Current Semester </option> 
+
+        </select>
+    </label>
+    <label>Week:
+      <select required name="weekSI" autocomplete="off">
+          <option value="">choose one</option>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+        <option value=6>6</option>
+        <option value=7>7</option>
+        <option value=8>8</option>
+        <option value=9>9</option>
+        <option value=10>10</option>
+        <option value=11>11</option>
+        <option value=12>12</option>
+        <option value=13>13</option>
+        <option value=14>14</option>
+        <option value=15>15</option>
+        <option value=16>16</option>
+      </select>
+    </label>  
+    <input type="submit" value="search"></p>
+  
+  </form>
+
+  {% block main_content %} {% endblock %}
+
+{% endblock %}
