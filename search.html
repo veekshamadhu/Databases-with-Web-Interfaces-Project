@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search for materials:</h2>
+<form class="search" method="GET" action="{{url_for('searchResults')}}">
+    <p>
+    <label>Semester*:
+        <select required name="semester" autocomplete="off">
+            <option value="">choose one</option>
+            {% for entry in semesters: %}
+                  <option value='{{entry.semester}}'>{{entry.semester}}</option>
+            {% endfor %}
+            <!-- will have to change the default semester manually every semester -->
+            <option value="Spring-2021" selected > Current Semester </option> 
+        </select>
+    </label>
+    <label>Department*:
+      <select required name="department" autocomplete="off">
+          <option value="">choose one</option>
+          {% for entry in departments: %}
+              <option value='{{entry.department}}'>{{entry.department}}</option>
+          {% endfor %}
+      </select>
+    </label>
+    <label>Class: <input type="text" name="class" value = "" ></label>
+    <label>Section:
+            <select name="section" autocomplete="off">
+                <option value="">choose one</option>
+                {% for entry in sections: %}
+                  <option value="{{entry.section}}">{{entry.section}}</option>
+                {% endfor %}
+                <option value="0" selected > All </option>
+            </select>
+    </label>
+    <label>Topic: <input type="text" name="topic" value = ""></label>
+  
+    <input type="submit" value="search"></p>
+  
+    
+  </form>
+  
+
+  {% block main_content %} {% endblock %}
+  
+  {% endblock %}
+
+
+
+  
