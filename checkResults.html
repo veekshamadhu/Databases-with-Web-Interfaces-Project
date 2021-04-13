@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h2>Matching Results for {{semester}} - Week {{week}}:</h2>
+
+<p> These are the SIs who have uploaded materials: 
+</p>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Username</th> 
+        <th>No. of Files Uploaded</th> 
+    </tr>
+   
+{% for result in SIsYes %}
+    <tr>
+        <td>{{result.name}}</td>
+        <td>{{result.username}}</td>
+        <td>{{result.count_files}}</td>
+    </tr>
+{% endfor %}
+    
+</table>
+
+<p> These are the SIs who have NOT uploaded materials: 
+</p>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Username</th> 
+    </tr>
+   
+{% for result in SIsNo %}
+    <tr>
+        <td>{{result.name}}</td>
+        <td>{{result.username}}</td>
+    </tr>
+{% endfor %}
+    
+</table>
+
+{% endblock %}
