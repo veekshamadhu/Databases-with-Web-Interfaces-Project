@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Files uploaded by {{uploader_id}}:</h2>
+
+<table>
+    <tr>
+        <th>Class</th>
+        <th>Week</th> 
+        <th>File</th>
+        <th>Topic</th>
+        <th>Kind</th>
+        <th>Edit</th>
+    </tr>
+   
+{% for result in files %}
+    <tr>
+        <td>{{result.department}} {{result.classNumber}}</td>
+        <td>{{result.week}}</td>
+        <td><a href="{{ url_for('get_file',mID= result.mID ) }}">{{result.fileName}}</a></td>
+        <td>{{result.topic}}</td>
+        <td>{{result.kind}}</td>       
+        <td><form method="POST" action="{{url_for('uploaded_files')}}" > 
+            <input type = "hidden" name = "mID" value = "{{result.mID}}" >
+            <input type="submit" name="delete" value="delete"></form></td> 
+    </tr>
+{% endfor %}
+    
+</table>
+
+{% endblock %}
