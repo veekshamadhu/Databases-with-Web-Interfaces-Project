@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2> Assign students as SI leaders to the classes they will be leading for the semester:</h2>
+
+<form class="insertSI" method="POST" action="{{url_for('insertSI')}}">
+    <p>
+        <label>Name:
+                <select required name="name" autocomplete="off">
+                    <option value="">choose one</option>
+                    {% for entry in students: %}
+                      <option value="{{entry.username}}">{{entry.name}} ({{entry.username}})</option>
+                    {% endfor %}
+                </select>
+        </label>
+        </p>
+    <p>
+    <label>Class:
+            <select required name="class" autocomplete="off">
+                <option value="">choose one</option>
+                {% for entry in classInfo: %}
+                  <option value="{{entry.classID}}">{{entry.department}} {{entry.classNumber}} - {{entry.section}}</option>
+                {% endfor %}
+            </select>
+    </label>
+    </p>
+    <p>
+    <input type="submit" value="assign"></p>
+  
+    
+  </form>
+  
+
+  {% block main_content %} {% endblock %}
+  
+  {% endblock %}
