@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if username %}
+    <p>
+    <form method="GET" action="{{url_for('cas.logout')}}">
+    <button class="login">logout {{username}}</button>
+        </form>
+
+{% else %}
+
+   <p>
+   <form method="GET" action="{{url_for('cas.login')}}">
+     <button class="login">login</button>
+   </form>
+
+{% endif %} 
+
+<h2>About</h2>
+
+<p>Welcome to the <a href="https://www.wellesley.edu/pltc/">PLTC's</a>
+   Tutor Materials Repository!</p>
+
+<p>This application was created to increase accessibility to
+   <a href="https://www.wellesley.edu/pltc/sicourses/">SI</a> materials at  
+   <a href="https://www.wellesley.edu/">Wellesley College.</a>
+</p>
+
+<p>Please login to the application using your Wellesley College
+   login details.
+</p>
+
+{% endblock %}
