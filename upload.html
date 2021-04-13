@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Upload new materials:</h2>
+<form class="upload" method="POST" action="{{url_for('upload')}}" ENCTYPE="multipart/form-data">
+    <p>
+    <label>Semester:
+        <select required name="semester">
+            <option value="">choose one</option>
+            {% for entry in semesters: %}
+                  <option value='{{entry.semester}}'>{{entry.semester}}</option>
+            {% endfor %}
+            <!-- will have to change the default semester manually every semester -->
+            <option value="Spring-2021" selected > Current Semester </option> 
+        </select>
+    </label>
+    </p>
+    <p>
+    <label>Class:
+            <select required name="class">
+                <option value="">choose one</option>
+                {% for entry in classInfo: %}
+                  <option value="{{entry.classID}}">{{entry.department}} {{entry.classNumber}} - {{entry.section}}</option>
+                {% endfor %}
+            </select>
+    </label>
+    </p>
+    <p>
+    <label>Topic: <input type="text" required name="topic" value = ""></label>
+    </p>
+    <p>
+    <label>Kind:</label>
+            <input type = "radio" required name="kind" id="lesson-plan" value="lesson plan">
+            <label for="lesson-plan">Lesson Plan</label>
+            <input type = "radio" name="kind" id="handout" value="handout">
+            <label for="handout">Handout</label>
+            <input type = "radio" name="kind" id="solutions" value="solutions">
+            <label for="solutions">Solutions</label>
+            <input type = "radio" name="kind" id="other" value="other">
+            <label for="other">Other</label>    
+    </p>
+    <p>
+    <label>Week:
+        <select required name="week">
+                <option value="">choose one</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
+                <option value=11>11</option>
+                <option value=12>12</option>
+                <option value=13>13</option>
+                <option value=14>14</option>
+                <option value=15>15</option>
+                <option value=16>16</option>     
+        </select>  
+    </label>
+    </p>
+    <p>
+    <label>File: <input type="file" required name="SI_material"></label>
+    </p>
+    <p>
+    <input type="submit" value="upload"></p>
+  
+    
+  </form>
+  
+
+  {% block main_content %} {% endblock %}
+  
+  {% endblock %}
